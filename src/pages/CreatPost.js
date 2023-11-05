@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 
-function CreatPost() {
+function CreatPost(isAuth) {
   const [title, setTitle] = useState("");
   const [postText, setPostText] = useState("");
 
@@ -22,6 +22,12 @@ function CreatPost() {
     });
     navigate("/");
   };
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/lohin");
+    }
+  }, []);
 
   return (
     <div className="createPostPage">
