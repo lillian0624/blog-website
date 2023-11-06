@@ -9,6 +9,7 @@ import { signOut } from "firebase/auth";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+  const [imageUplod, setImageUpload] = useState(null);
 
   const signUseOut = () => {
     signOut(auth).then(() => {
