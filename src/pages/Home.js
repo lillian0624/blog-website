@@ -1,9 +1,9 @@
 //shortcut to create snippet "rfce"
 import { React, useEffect, useState } from "react";
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../firebase-config";
+import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
+import { db, auth } from "../firebase-config";
 
-function Home() {
+function Home(isAuth) {
   const [postLists, setPostList] = useState([]);
   const postCollectionRef = collection(db, "post");
 
@@ -14,18 +14,34 @@ function Home() {
     };
 
     getPosts();
-  });
+  }, [postCollectionRef]);
+
+  const deletePost = async (id) => {
+    const postDoc = doc(db, "post", id);
+    await deleteDoc(postDoc);
+  };
+
   return (
     <div className="homePage">
       {postLists.map((post) => {
         return (
-          <div className="post">
+          <div key={post.id} className="post">
             <div className="postHeader">
               <div className="title">
                 <h1> {post.title}</h1>
               </div>
+
               <div className="postTextContainer">{post.postText}</div>
               <h3>@{post.author.name}</h3>
+
+              <div className="deletePost">
+                {isAuth && post.author.id === auth.currentUser.uid && (
+                  <button onClick={() => deletePost(post.id)}>
+                    {" "}
+                    &#128465;
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         );
