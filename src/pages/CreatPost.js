@@ -37,6 +37,7 @@ function CreatePost({ isAuth }) {
           name: auth.currentUser.displayName,
           id: auth.currentUser.uid,
         },
+        imageUrl: `https://firebasestorage.googleapis.com/v0/b/blogproject-4a273/o/images%2F${imageName}?alt=media`,
       });
 
       const postId = postDocRef.id;

@@ -3,7 +3,6 @@ import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase-config";
-import CreatePost from "./CreatPost";
 
 function Home({ isAuth }) {
   const [postLists, setPostList] = useState([]);
