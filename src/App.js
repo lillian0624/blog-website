@@ -6,10 +6,10 @@ import CreatePost from "./pages/CreatPost";
 import Login from "./pages/Login";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
+import LiveChat from "./pages/LiveChat";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
-  const [imageUplod, setImageUpload] = useState(null);
 
   const signUseOut = () => {
     signOut(auth).then(() => {
@@ -31,6 +31,7 @@ function App() {
             <button onClick={signUseOut}>Log Out</button>
           </>
         )}
+        <Link to="/">LiveChat</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth} />} />

@@ -10,6 +10,7 @@ function CreatePost({ isAuth }) {
   const [title, setTitle] = useState("");
   const [postText, setPostText] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const postCollectionRef = collection(db, "post");
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ function CreatePost({ isAuth }) {
     const imageRef = ref(storage, `images/${imageName}`);
 
     try {
+      setLoading(true);
+
       await uploadBytes(imageRef, imageUpload);
       console.log("Image Uploaded");
 
@@ -54,8 +57,12 @@ function CreatePost({ isAuth }) {
 
       // Navigate after successful submission
       navigate("/");
+
+      window.alert("Image uploaded!");
     } catch (error) {
       console.error("Error creating post:", error);
+    } finally {
+      setLoading(false); // Set loading to false regardless of success or error
     }
   };
 
@@ -93,7 +100,9 @@ function CreatePost({ isAuth }) {
           }}
         />
 
-        <button onClick={createPost}>Submit Post</button>
+        <button onClick={createPost} disabled={loading}>
+          {loading ? "Uploading..." : "Submit Post"}
+        </button>
       </div>
     </div>
   );
