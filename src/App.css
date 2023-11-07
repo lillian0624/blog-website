@@ -2,10 +2,7 @@
   text-align: center;
 }
 
-img {
-  width: 300px;
-  margin: 10px;
-}
+
 
 body {
   padding: 0%;
@@ -201,4 +198,9 @@ textarea {
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
+}
+
+.postImg {
+  width: 300px;
+  margin: 10px;
 }

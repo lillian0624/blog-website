@@ -32,7 +32,6 @@ function CreatePost({ isAuth }) {
       setPostText("");
       setImageUpload(null);
 
-      // Get the generated postId
       const postDocRef = await addDoc(postCollectionRef, {
         title,
         postText,
@@ -40,18 +39,17 @@ function CreatePost({ isAuth }) {
           name: auth.currentUser.displayName,
           id: auth.currentUser.uid,
         },
-        imageUrl: `https://firebasestorage.googleapis.com/v0/b/blogproject-4a273/o/images%2F${imageName}?alt=media`,
       });
 
       const postId = postDocRef.id;
 
+      // Get the image URL
+      const imageUrl = `https://firebasestorage.googleapis.com/v0/b/blogproject-4a273/o/images%2F${postId}%2F${imageName}?alt=media`;
+
       // Update the post document with the postId and imageUrl
       await setDoc(
         doc(db, "post", postId),
-        {
-          postId,
-          imageUrl: `https://firebasestorage.googleapis.com/v0/b/blogproject-4a273/o/images%2F${postId}%2F${imageName}?alt=media`,
-        },
+        { postId, imageUrl },
         { merge: true }
       );
 

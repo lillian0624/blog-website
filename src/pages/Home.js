@@ -8,6 +8,7 @@ function Home({ isAuth }) {
   const [postLists, setPostList] = useState([]);
 
   useEffect(() => {
+    //fetching posts from Firestor
     const getPosts = async () => {
       const postCollectionRef = collection(db, "post");
       const data = await getDocs(postCollectionRef);
@@ -56,8 +57,6 @@ function PostItem({ post, isAuth, deletePost }) {
         console.error("Error fetching image:", error);
       }
     };
-
-    fetchImages();
   }, [post.id]);
 
   return (
@@ -74,7 +73,9 @@ function PostItem({ post, isAuth, deletePost }) {
           {isAuth && post.author.id === auth.currentUser.uid && (
             <button onClick={() => deletePost(post.id)}> &#128465;</button>
           )}
+        </div>
 
+        <div className="postImg">
           {post.imageUrl && (
             <img src={post.imageUrl} alt={`post-${post.id}-image`} />
           )}
