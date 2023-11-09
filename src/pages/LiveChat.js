@@ -6,7 +6,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 function LiveChat() {
-  const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
+  //   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [room, setRoom] = useState(null);
 
   const roomInputRef = useRef(null);
