@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { auth } from "./firebase-config";
 import Home from "./pages/Home";
@@ -27,7 +27,7 @@ function App() {
           <Link to="/login">Login</Link>
         ) : (
           <>
-            <Link to="/createpost">Create Post</Link>
+            <Link to="/createpost">CreatePost</Link>
             <button onClick={signUseOut}>Log Out</button>
             <Link to="/livechat">LiveChat</Link>
           </>
