@@ -29,14 +29,15 @@ function App() {
           <>
             <Link to="/createpost">Create Post</Link>
             <button onClick={signUseOut}>Log Out</button>
+            <Link to="/livechat">LiveChat</Link>
           </>
         )}
-        <Link to="/">LiveChat</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home isAuth={isAuth} />} />
         <Route path="/createpost" element={<CreatePost isAuth={isAuth} />} />
         <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+        <Route path="/livechat" element={<LiveChat />} />
       </Routes>
     </Router>
   );
